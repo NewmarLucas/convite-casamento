@@ -4,5 +4,22 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-  background-color: blanchedalmond;
+  background-color: #f4f4f4;
+  padding-top: var(--header-height);
+  position: relative;
+}
+
+.rectangle {
+  position: absolute;
+  top: calc(75px + var(--header-height));
+  left: 0;
+  width: 14px;
+  height: 126px;
+  background-color: var(--main-color);
+}
+
+.circleImg {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

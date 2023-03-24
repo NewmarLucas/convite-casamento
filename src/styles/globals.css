@@ -1,3 +1,8 @@
+:root {
+  --header-height: 125px;
+  --main-color: #ff477e;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
