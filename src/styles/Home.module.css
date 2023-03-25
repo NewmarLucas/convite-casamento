@@ -53,9 +53,12 @@
 
 .cardInfoContainer {
   margin-top: 110px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 24px;
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
 .mainImage {

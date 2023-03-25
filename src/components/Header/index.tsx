@@ -5,7 +5,7 @@ import logo from '@/assets/logo.svg';
 import styles from './styles.module.css';
 
 export function Header() {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   const Buttons = () => (
     <div className={styles.buttonsContainer}>

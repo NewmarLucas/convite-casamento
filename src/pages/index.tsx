@@ -17,7 +17,7 @@ import noivos from '@/assets/noivos.png';
 
 const infos = [
   {
-    text: '18/11/23',
+    text: '18/11/2023 (sábado)',
     icon: <FaRegCalendarAlt size={35} color={'var(--main-color)'} />,
   },
   {
@@ -54,9 +54,7 @@ export default function Home() {
                 style={{ marginLeft: 10 }}
               />
             </h1>
-            <h1>
-              <strong>Dream Wedding come true</strong>
-            </h1>
+            <h1>Dream Wedding come true</h1>
             <p className={styles.secondaryText}>
               &quot;Once in a while, right in the middle of an ordinary life,
               love gives us a fairy tale.&quot;
@@ -67,7 +65,12 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <Image src={noivos} alt='noivos' className={styles.mainImage} />
+          <Image
+            src={noivos}
+            alt='noivos'
+            loading='lazy'
+            className={styles.mainImage}
+          />
         </div>
         <div className={styles.mainButtonContainer}>
           <button className='filled-button'>CONFIRMAR PRESENÇA</button>
