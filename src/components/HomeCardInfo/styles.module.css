@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container p {
+  font: 600 18px Poppins, sans-serif;
+  line-height: 27px;
+  max-width: 200px;
+}
+
+.iconContainer {
+  height: 62px;
+  width: 62px;
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

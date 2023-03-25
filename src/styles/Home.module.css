@@ -1,10 +1,8 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6rem;
   min-height: 100vh;
   background-color: #f4f4f4;
+  color: var(--text-color);
+  padding: 1rem;
   padding-top: var(--header-height);
   position: relative;
 }
@@ -14,7 +12,7 @@
   top: calc(75px + var(--header-height));
   left: 0;
   width: 14px;
-  height: 126px;
+  height: 125px;
   background-color: var(--main-color);
 }
 
@@ -22,4 +20,41 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  margin-top: 75px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content .texts {
+  height: 100%;
+}
+
+.content .texts h1 {
+  font: 700 42px Poppins, sans-serif;
+}
+
+.content .texts .secondaryText {
+  margin-top: 20px;
+  font: 400 18px Poppins, sans-serif;
+  max-width: 375px;
+}
+
+.cardInfoContainer {
+  margin-top: 110px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 24px;
+}
+
+.mainImage {
+  object-fit: contain;
+  width: 40%;
 }
