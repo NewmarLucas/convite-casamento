@@ -69,6 +69,9 @@ export default function Home() {
           </div>
           <Image src={noivos} alt='noivos' className={styles.mainImage} />
         </div>
+        <div className={styles.mainButtonContainer}>
+          <button className='filled-button'>CONFIRMAR PRESENÇA</button>
+        </div>
       </main>
     </>
   );

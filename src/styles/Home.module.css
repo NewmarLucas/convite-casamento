@@ -20,6 +20,8 @@
   position: absolute;
   top: 0;
   right: 0;
+  max-width: 45%;
+  z-index: 1;
 }
 
 .content {
@@ -35,10 +37,12 @@
 
 .content .texts {
   height: 100%;
+  z-index: 2;
 }
 
 .content .texts h1 {
-  font: 700 42px Poppins, sans-serif;
+  font: 700 40px Poppins, sans-serif;
+  line-height: 45px;
 }
 
 .content .texts .secondaryText {
@@ -56,5 +60,37 @@
 
 .mainImage {
   object-fit: contain;
-  width: 40%;
+  width: 85%;
+  max-width: 480px;
+  height: min-content;
+  padding: 50px 0;
+}
+
+.mainButtonContainer {
+  margin: 60px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .content .texts h1 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .circleImg {
+    top: -80px;
+  }
+
+  .content .texts h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
 }
