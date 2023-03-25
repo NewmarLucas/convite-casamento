@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { GiKnifeFork } from '@react-icons/all-files/gi/GiKnifeFork';
+import { ImSpoonKnife } from '@react-icons/all-files/im/ImSpoonKnife';
 import { FaRegMap } from '@react-icons/all-files/fa/FaRegMap';
 import { FaRegCalendarAlt } from '@react-icons/all-files/fa/FaRegCalendarAlt';
 import { FaRegClock } from '@react-icons/all-files/fa/FaRegClock';
@@ -30,7 +30,7 @@ const infos = [
   },
   {
     text: 'Traga prato e talher',
-    icon: <GiKnifeFork size={35} color={'var(--main-color)'} />,
+    icon: <ImSpoonKnife size={35} color={'var(--main-color)'} />,
   },
 ];
 
