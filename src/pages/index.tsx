@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { ImSpoonKnife } from '@react-icons/all-files/im/ImSpoonKnife';
 import { FaRegMap } from '@react-icons/all-files/fa/FaRegMap';
@@ -73,7 +74,9 @@ export default function Home() {
           />
         </div>
         <div className={styles.mainButtonContainer}>
-          <button className='filled-button'>CONFIRMAR PRESENÇA</button>
+          <Link href='/confirmar/123' className='filled-button'>
+            CONFIRMAR PRESENÇA
+          </Link>
         </div>
       </main>
     </>

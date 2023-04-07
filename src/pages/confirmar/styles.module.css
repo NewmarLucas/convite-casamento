@@ -1,0 +1,118 @@
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.leftContent {
+  height: 100%;
+  width: 60vw;
+  background-color: grey;
+}
+
+.backgroundImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.rightContent {
+  height: 100%;
+  width: 40vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.peopleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: var(--text-color);
+  margin-top: 20px;
+}
+
+.checkboxContainer {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flowers {
+  margin: 10px 0;
+}
+
+.names h1 {
+  text-align: center;
+  font-size: 48px;
+  color: var(--text-color);
+}
+
+.inviteText {
+  text-align: center;
+}
+
+.buttonContainer {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonContainer button {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 35px;
+  width: 100%;
+  max-width: 250px;
+  background-color: var(--main-color);
+  color: #fff;
+  text-transform: uppercase;
+  font: 500 18px Poppins, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .leftContent {
+    width: 100%;
+    height: 50vh;
+    object-position: bottom;
+  }
+
+  .rightContent {
+    background-color: var(--background-color);
+    width: 100%;
+    position: absolute;
+    margin-top: -10vh;
+    top: 55vh;
+    height: 50vh;
+    z-index: 2;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    overflow: hidden;
+  }
+
+  .names h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .leftContent {
+    height: 40vh;
+  }
+
+  .rightContent {
+    margin-top: -10vh;
+    top: 40vh;
+    height: 65vh;
+  }
+}
