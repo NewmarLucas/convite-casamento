@@ -1,5 +1,4 @@
 .header {
-  background-color: #fff;
   position: fixed;
   top: 0;
   right: 0;
@@ -13,9 +12,9 @@
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 70px;
+  padding: 20px 45px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 

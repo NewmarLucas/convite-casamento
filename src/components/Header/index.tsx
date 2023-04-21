@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-
-import logo from '@/assets/logo.svg';
 import styles from './styles.module.css';
 
 export function Header() {
@@ -19,7 +16,6 @@ export function Header() {
   return (
     <nav className={styles.header}>
       <div className={styles.content}>
-        <Image src={logo} alt='logo' />
         {/* burger menu start */}
         <div className={styles.menuIcon}>
           <input

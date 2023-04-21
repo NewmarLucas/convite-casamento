@@ -12,7 +12,9 @@ export function HomeCardInfo({ data }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.iconContainer}>{data.icon}</div>
-      <p>{data.text}</p>
+      <div className={styles.textContainer}>
+        <p>{data.text}</p>
+      </div>
     </div>
   );
 }
