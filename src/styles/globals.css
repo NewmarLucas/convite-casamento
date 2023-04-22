@@ -51,3 +51,7 @@ a {
 .filled-button:hover {
   background-color: var(--main-color-dark);
 }
+
+.is-active-header {
+  background-color: hsl(0deg 0% 21% / 1);
+}

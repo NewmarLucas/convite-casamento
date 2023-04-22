@@ -80,7 +80,12 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <Image src={footerPattern} alt='ondas' className={styles.footerImage} />
+      <Image
+        priority
+        src={footerPattern}
+        alt='ondas'
+        className={styles.footerImage}
+      />
     </div>
   );
 }

@@ -103,7 +103,8 @@
 .footerImage {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  min-width: 100%;
+  min-height: 200px;
   opacity: 0.6;
 }
 
