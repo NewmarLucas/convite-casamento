@@ -1,5 +1,6 @@
 :root {
   --header-height: 125px;
+  --max-width: 1200px;
   --main-color: #053c5e;
   --main-color-dark: #032940;
   --text-color: #053c5e;

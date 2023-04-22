@@ -10,9 +10,9 @@
   height: var(--header-height);
   width: 100%;
   height: 100%;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -20,7 +20,9 @@
 
 .dropdownContent {
   height: fit-content;
-  padding: 30px;
+  padding: 5px 20px;
+  width: max-content;
+  margin-left: auto;
 }
 
 .dropdownContent .buttonsContainer {
@@ -71,7 +73,7 @@
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--bar-bg, #000);
+  background-color: #fff;
   border-radius: 1px;
   transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
 }
@@ -115,8 +117,7 @@
 
 @media (max-width: 768px) {
   .content {
-    padding: 20px 35px;
-    height: 100px;
+    height: 75px;
   }
 
   .menuIcon {
@@ -125,5 +126,6 @@
 
   .buttonsContainer {
     display: none;
+    gap: 15px;
   }
 }
