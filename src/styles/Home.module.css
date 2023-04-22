@@ -16,16 +16,18 @@
 
 .content {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   gap: 45px;
   height: 100%;
   max-width: 1200px;
+  margin: 50px auto auto auto;
 }
 
 .content .texts {
   display: flex;
   flex-direction: column;
+  padding: 0 25px;
   height: 100%;
   z-index: 2;
 }
@@ -42,7 +44,6 @@
 }
 
 .cardInfoContainer {
-  margin-top: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,6 +65,20 @@
   -webkit-box-shadow: inset 0px 90px 45px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: inset 0px 90px 45px 0px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0px 90px 45px 0px rgba(0, 0, 0, 0.5);
+}
+
+.mainImage .bannerTitle {
+  position: absolute;
+  bottom: 25px;
+  padding: 0 25px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 32px;
+  letter-spacing: 15px;
+}
+
+.mainImage .bannerTitle h1 {
+  text-shadow: -1px 1px 10px rgba(0, 0, 0, 0.75);
 }
 
 .mainButtonContainer {

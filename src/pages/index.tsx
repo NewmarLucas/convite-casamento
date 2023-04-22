@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Montserrat } from 'next/font/google';
 
 import { ImSpoonKnife } from '@react-icons/all-files/im/ImSpoonKnife';
 import { RiPinDistanceLine } from '@react-icons/all-files/ri/RiPinDistanceLine';
@@ -13,6 +14,11 @@ import { HomeCardInfo } from '@/components/HomeCardInfo';
 
 import weddingRing from '@/assets/weddingRing.svg';
 import footerPattern from '@/assets/footerPattern.png';
+
+const font = Montserrat({
+  weight: '600',
+  subsets: ['latin'],
+});
 
 const infos = [
   {
@@ -34,7 +40,15 @@ export default function Home() {
     <div className={styles.container}>
       <HeadComponent />
       <Header />
-      <div className={styles.mainImage} />
+      <div className={styles.mainImage}>
+        <div className={styles.bannerTitle}>
+          <h1 className={font.className}>
+            <span>Casamento de</span>
+            <br />
+            <span>Fernanda e Newmar</span>
+          </h1>
+        </div>
+      </div>
       <div className={styles.main}>
         <div className={styles.content}>
           <div className={styles.texts}>
