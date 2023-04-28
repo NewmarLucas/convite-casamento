@@ -52,8 +52,9 @@ export default function Home() {
       <div className={styles.main}>
         <div className={styles.content}>
           <div className={styles.texts}>
-            <h1 style={{ fontWeight: 400 }}>
-              When your
+            <h1 style={{ fontWeight: 400 }}>Duas almas, uma só jornada:</h1>
+            <h1>
+              o casamento.
               <Image
                 src={weddingRing}
                 alt='coração'
@@ -62,10 +63,9 @@ export default function Home() {
                 style={{ marginLeft: 10 }}
               />
             </h1>
-            <h1>Dream Wedding come true</h1>
             <p className={styles.secondaryText}>
-              &quot;Once in a while, right in the middle of an ordinary life,
-              love gives us a fairy tale.&quot;
+              &quot;Assim, eles já não são dois, mas sim uma só carne. Portanto,
+              o que Deus uniu, ninguém o separe.&quot;
             </p>
           </div>
           <div className={styles.cardInfoContainer}>

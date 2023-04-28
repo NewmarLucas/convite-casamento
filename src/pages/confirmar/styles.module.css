@@ -2,7 +2,6 @@
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background: url('../../assets/pattern.png') repeat;
 }
 
 .leftContent {
@@ -25,6 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: url('../../assets/pattern.png') repeat, var(--background-color);
 }
 
 .peopleForm {
@@ -89,7 +89,6 @@
   }
 
   .rightContent {
-    background-color: var(--background-color);
     width: 100%;
     position: absolute;
     margin-top: -10vh;
