@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Dancing_Script } from 'next/font/google';
 import Switch from 'react-switch';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../firebase';
 
 import styles from './styles.module.css';
 import noivos from '@/assets/noivos-bg.jpg';
@@ -32,6 +34,10 @@ export default function Invite() {
   const [selected, setSelected] = useState<PeopleSelect[]>([]);
 
   useEffect(() => {
+    void getDocs(collection(db, 'test')).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({ ...doc.data() }));
+      console.log(newData);
+    });
     setSelected(
       people.map((item) => ({
         name: item.name,
