@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as z from 'zod';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../../firebase';
 
 type Data = {
@@ -43,12 +43,26 @@ export default async function handler(
     }
   }
 
+  async function getAllUsers() {
+    try {
+      const snap = await getDocs(collection(db, 'users'));
+      res
+        .status(200)
+        .json(snap.docs.map((item) => ({ ...item.data(), id: item.id })));
+    } catch (error) {
+      res.status(500).json({ success: false, msg: 'Something went wrong' });
+    }
+  }
+
   switch (req.method) {
+    case 'GET':
+      getAllUsers();
+      break;
     case 'POST':
       saveUser();
       break;
     default:
-      res.setHeader('Allow', ['POST']);
+      res.setHeader('Allow', ['POST', 'GET']);
       res
         .status(405)
         .json({ success: false, msg: `Method ${req.method} Not Allowed` });

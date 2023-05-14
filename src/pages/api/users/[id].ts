@@ -10,9 +10,11 @@ type Data = {
 const schema = z.object({
   name: z.string().nonempty('Campo obrigatório'),
   phone: z.string().nonempty('Campo obrigatório'),
+  confirmation: z.boolean().optional(),
   companions: z.array(
     z.object({
       name: z.string().nonempty('Campo obrigatório'),
+      confirmation: z.boolean().optional(),
     })
   ),
 });
@@ -40,10 +42,10 @@ export default async function handler(
       const fields = schema.parse(req.body);
       const payload = {
         ...fields,
-        confirmation: false,
+        confirmation: fields.confirmation ?? false,
         companions: fields.companions.map((item) => ({
           ...item,
-          confirmation: false,
+          confirmation: item.confirmation ?? false,
         })),
       };
       const { id } = req.query;
