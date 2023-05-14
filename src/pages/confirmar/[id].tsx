@@ -20,14 +20,7 @@ interface PeopleSelect {
   checked: boolean;
 }
 
-const people = [
-  { name: 'Carlos Campossano Ajala' },
-  { name: 'Joana Escobar Ajala' },
-  { name: 'Ana Carla Escobar Ajala' },
-  { name: 'Ana Flávia Escobar Ajala' },
-];
-
-export default function Invite(props: any) {
+export default function Invite() {
   const router = useRouter();
   const { id } = router.query;
   const [selected, setSelected] = useState<PeopleSelect[]>([]);
@@ -51,12 +44,6 @@ export default function Invite(props: any) {
 
   useEffect(() => {
     getUserData();
-    setSelected(
-      people.map((item) => ({
-        name: item.name,
-        checked: false,
-      }))
-    );
   }, [getUserData]);
 
   function handleSelect(checked: boolean, index: number) {
