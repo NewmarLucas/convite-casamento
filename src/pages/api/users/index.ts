@@ -46,9 +46,10 @@ export default async function handler(
   async function getAllUsers() {
     try {
       const snap = await getDocs(collection(db, 'users'));
-      res
-        .status(200)
-        .json(snap.docs.map((item) => ({ ...item.data(), id: item.id })));
+      res.status(200).json({
+        success: true,
+        data: snap.docs.map((item) => ({ ...item.data(), id: item.id })),
+      });
     } catch (error) {
       res.status(500).json({ success: false, msg: 'Something went wrong' });
     }

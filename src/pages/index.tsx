@@ -75,7 +75,10 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.mainButtonContainer}>
-          <Link href='/confirmar/123' className='filled-button'>
+          <Link
+            href='/confirmar/ichnod3AaEytG2d2VPQv'
+            className='filled-button'
+          >
             CONFIRMAR PRESENÇA
           </Link>
         </div>

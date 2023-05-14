@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Dancing_Script } from 'next/font/google';
@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 import noivos from '@/assets/noivos-bg.jpg';
 import flores from '@/assets/flores.png';
 import HeadComponent from '@/components/Head';
+import { getUser } from '@/services/users';
 
 const font = Dancing_Script({
   weight: '400',
@@ -26,19 +27,37 @@ const people = [
   { name: 'Ana Flávia Escobar Ajala' },
 ];
 
-export default function Invite() {
-  // const router = useRouter();
-  // const { id } = router.query;
+export default function Invite(props: any) {
+  const router = useRouter();
+  const { id } = router.query;
   const [selected, setSelected] = useState<PeopleSelect[]>([]);
 
+  const getUserData = useCallback(() => {
+    getUser(String(id)).then((res) => {
+      if (res) {
+        setSelected([
+          {
+            name: res.name,
+            checked: res.confirmation,
+          },
+          ...res.companions.map((item) => ({
+            name: item.name,
+            checked: item.confirmation,
+          })),
+        ]);
+      }
+    });
+  }, [id]);
+
   useEffect(() => {
+    getUserData();
     setSelected(
       people.map((item) => ({
         name: item.name,
         checked: false,
       }))
     );
-  }, []);
+  }, [getUserData]);
 
   function handleSelect(checked: boolean, index: number) {
     setSelected((prev) => {
