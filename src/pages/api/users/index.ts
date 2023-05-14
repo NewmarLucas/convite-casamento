@@ -1,8 +1,11 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as z from 'zod';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../../firebase';
+
+type Data = {
+  [x: string]: any;
+};
 
 const schema = z.object({
   name: z.string().nonempty('Campo obrigatório'),
@@ -13,10 +16,6 @@ const schema = z.object({
     })
   ),
 });
-
-type Data = {
-  [x: string]: any;
-};
 
 export default async function handler(
   req: NextApiRequest,
@@ -40,28 +39,19 @@ export default async function handler(
         res.status(400).json(error.formErrors.fieldErrors);
         return;
       }
-      res.status(500).end('Something went wrong');
+      res.status(500).json({ success: false, msg: 'Something went wrong' });
     }
   }
 
   switch (req.method) {
-    case 'GET':
-      const { id } = req.query;
-      res.status(200).json({ id });
-      break;
     case 'POST':
       saveUser();
       break;
     default:
-      res.setHeader('Allow', ['GET', 'POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
+      res.setHeader('Allow', ['POST']);
+      res
+        .status(405)
+        .json({ success: false, msg: `Method ${req.method} Not Allowed` });
       break;
-    // try {
-    //   const querySnapshot = await getDocs(collection(db, 'test'));
-    //   const newData = querySnapshot.docs.map((doc) => ({ ...doc.data() }));
-    //   res.status(200).json(newData);
-    // } catch (err) {
-    //   res.status(500).json({ error: 'failed to load data' });
-    // }
   }
 }
