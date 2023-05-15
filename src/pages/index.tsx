@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Montserrat } from 'next/font/google';
 
-import { ImSpoonKnife } from '@react-icons/all-files/im/ImSpoonKnife';
-import { RiPinDistanceLine } from '@react-icons/all-files/ri/RiPinDistanceLine';
+import { ImSpoonKnife } from 'react-icons/im';
+import { RiPinDistanceLine } from 'react-icons/ri';
 import { TbCalendarTime } from 'react-icons/tb';
 
 import styles from '@/styles/Home.module.css';
@@ -47,7 +47,7 @@ export default function Home() {
   }, [id]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid='container'>
       <HeadComponent />
       <Header />
       <div className={styles.mainImage}>

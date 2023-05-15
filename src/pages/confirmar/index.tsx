@@ -78,29 +78,33 @@ export default function Invite() {
     <>
       <HeadComponent />
 
-      <div className={styles.container}>
-        <div className={styles.leftContent}>
+      <div data-testid='container' className={styles.container}>
+        <div data-testid='leftContent' className={styles.leftContent}>
           <Image
+            data-testid='bannerImage'
             src={noivos}
             alt='noivos'
             loading='lazy'
             className={styles.backgroundImage}
           />
         </div>
-        <div className={styles.rightContent}>
+        <div className={styles.rightContent} data-testid='rightContent'>
           <div className={styles.names}>
-            <h1 className={font.className}>Fernada & Newmar</h1>
+            <h1 data-testid='bannerTitle' className={font.className}>
+              Fernada & Newmar
+            </h1>
           </div>
           <Image
+            data-testid='flowersImage'
             src={flores}
             alt='flores'
             loading='lazy'
             className={styles.flowers}
           />
-          <p className={styles.inviteText}>
+          <p className={styles.inviteText} data-testid='inviteText'>
             Marque o nome das pessoas que vão no casamento
           </p>
-          <div className={styles.peopleForm}>
+          <div className={styles.peopleForm} data-testid='peopleForm'>
             {selected.map((item, i) => (
               <label key={item.name} className={styles.checkboxContainer}>
                 <Switch
@@ -116,7 +120,9 @@ export default function Invite() {
             ))}
           </div>
           <div className={styles.buttonContainer}>
-            <button onClick={submit}>Confirmar</button>
+            <button data-testid='confirmationButton' onClick={submit}>
+              Confirmar
+            </button>
           </div>
         </div>
       </div>
