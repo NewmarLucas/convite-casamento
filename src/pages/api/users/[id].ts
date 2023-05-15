@@ -28,7 +28,9 @@ export default async function handler(
       const { id } = req.query;
       const snap = await getDoc(doc(db, 'users', String(id)));
       if (snap.exists()) {
-        res.status(200).json({ success: true, data: snap.data() });
+        res
+          .status(200)
+          .json({ success: true, data: { ...snap.data(), id: snap.id } });
       } else {
         res.status(404).json({ success: false, msg: 'User not found' });
       }

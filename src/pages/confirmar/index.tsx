@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 import noivos from '@/assets/noivos-bg.jpg';
 import flores from '@/assets/flores.png';
 import HeadComponent from '@/components/Head';
-import { getUser } from '@/services/users';
+import { User, getUser, updateUser } from '@/services/users';
 
 const font = Dancing_Script({
   weight: '400',
@@ -20,12 +20,14 @@ interface PeopleSelect {
 }
 
 export default function Invite() {
+  const [userData, setUserData] = useState<User>({} as User);
   const [selected, setSelected] = useState<PeopleSelect[]>([]);
 
   const getUserData = useCallback(() => {
     const id = String(localStorage?.id);
     getUser(id).then((res) => {
       if (res) {
+        setUserData(res);
         setSelected([
           {
             name: res.name,
@@ -52,8 +54,24 @@ export default function Invite() {
     });
   }
 
-  function submit() {
-    alert(JSON.stringify(selected));
+  async function submit() {
+    const id = String(localStorage?.id);
+    const confirmations = [...selected];
+    const mainUser = confirmations.shift();
+    const payload: User = {
+      ...userData,
+      confirmation: mainUser?.checked ?? userData.confirmation,
+      companions: confirmations.map((item) => ({
+        name: item.name,
+        confirmation: item.checked,
+      })),
+    };
+    const res = await updateUser(id, payload);
+    if (res) {
+      alert('Sucesso!');
+    } else {
+      alert('Erro');
+    }
   }
 
   return (
