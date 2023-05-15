@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { Dancing_Script } from 'next/font/google';
 import Switch from 'react-switch';
 
@@ -21,12 +20,11 @@ interface PeopleSelect {
 }
 
 export default function Invite() {
-  const router = useRouter();
-  const { id } = router.query;
   const [selected, setSelected] = useState<PeopleSelect[]>([]);
 
   const getUserData = useCallback(() => {
-    getUser(String(id)).then((res) => {
+    const id = String(localStorage?.id);
+    getUser(id).then((res) => {
       if (res) {
         setSelected([
           {
@@ -40,7 +38,7 @@ export default function Invite() {
         ]);
       }
     });
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     getUserData();
@@ -52,6 +50,10 @@ export default function Invite() {
       copy[index].checked = checked;
       return copy;
     });
+  }
+
+  function submit() {
+    alert(JSON.stringify(selected));
   }
 
   return (
@@ -96,7 +98,7 @@ export default function Invite() {
             ))}
           </div>
           <div className={styles.buttonContainer}>
-            <button>Confirmar</button>
+            <button onClick={submit}>Confirmar</button>
           </div>
         </div>
       </div>

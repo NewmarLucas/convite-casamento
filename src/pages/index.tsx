@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Montserrat } from 'next/font/google';
@@ -14,6 +14,7 @@ import { HomeCardInfo } from '@/components/HomeCardInfo';
 
 import weddingRing from '@/assets/weddingRing.svg';
 import footerPattern from '@/assets/footerPattern.png';
+import { useRouter } from 'next/router';
 
 const font = Montserrat({
   weight: '600',
@@ -36,6 +37,15 @@ const infos = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    if (id) {
+      localStorage.setItem('id', String(id));
+    }
+  }, [id]);
+
   return (
     <div className={styles.container}>
       <HeadComponent />
@@ -75,10 +85,7 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.mainButtonContainer}>
-          <Link
-            href='/confirmar/ichnod3AaEytG2d2VPQv'
-            className='filled-button'
-          >
+          <Link href='/confirmar' className='filled-button'>
             CONFIRMAR PRESENÇA
           </Link>
         </div>
