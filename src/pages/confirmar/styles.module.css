@@ -42,6 +42,10 @@
   gap: 10px;
 }
 
+.checkboxContainer span {
+  line-height: 1.1rem;
+}
+
 .flowers {
   margin: 10px 0;
 }
@@ -83,17 +87,20 @@
   }
 
   .leftContent {
+    position: fixed;
+    top: 0;
+    right: 0;
     width: 100%;
     height: 50vh;
-    object-position: bottom;
   }
 
   .rightContent {
     width: 100%;
     position: absolute;
     margin-top: -10vh;
-    top: 55vh;
-    height: 50vh;
+    bottom: 0;
+    height: fit-content;
+    min-height: 55vh;
     z-index: 2;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -106,6 +113,11 @@
 }
 
 @media (max-width: 320px) {
+  .checkboxContainer span,
+  .inviteText {
+    font-size: 14px;
+  }
+
   .leftContent {
     height: 40vh;
   }

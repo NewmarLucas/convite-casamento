@@ -110,6 +110,7 @@ export default function Invite() {
                 <Switch
                   height={20}
                   width={45}
+                  onColor='#053c5e'
                   onChange={(e) => {
                     handleSelect(e, i);
                   }}
