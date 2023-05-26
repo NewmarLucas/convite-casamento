@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
 import Image from 'next/image';
 import { Dancing_Script } from 'next/font/google';
 import Switch from 'react-switch';
@@ -8,6 +8,7 @@ import noivos from '@/assets/noivos-bg.jpg';
 import flores from '@/assets/flores.png';
 import HeadComponent from '@/components/Head';
 import { User, getUser, updateUser } from '@/services/users';
+import { LoadingContext } from '@/providers/loading';
 
 const font = Dancing_Script({
   weight: '400',
@@ -20,27 +21,33 @@ interface PeopleSelect {
 }
 
 export default function Invite() {
+  const { setLoading } = useContext(LoadingContext);
   const [userData, setUserData] = useState<User>({} as User);
   const [selected, setSelected] = useState<PeopleSelect[]>([]);
 
   const getUserData = useCallback(() => {
     const id = String(localStorage?.id);
-    getUser(id).then((res) => {
-      if (res) {
-        setUserData(res);
-        setSelected([
-          {
-            name: res.name,
-            checked: res.confirmation,
-          },
-          ...res.companions.map((item) => ({
-            name: item.name,
-            checked: item.confirmation,
-          })),
-        ]);
-      }
-    });
-  }, []);
+    getUser(id)
+      .then((res) => {
+        setLoading(true);
+        if (res) {
+          setUserData(res);
+          setSelected([
+            {
+              name: res.name,
+              checked: res.confirmation,
+            },
+            ...res.companions.map((item) => ({
+              name: item.name,
+              checked: item.confirmation,
+            })),
+          ]);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [setLoading]);
 
   useEffect(() => {
     getUserData();
