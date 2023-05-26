@@ -12,7 +12,6 @@ export const LoadingContext = createContext<LoadingContext>(
 
 function LoadingProvider({ children }: React.PropsWithChildren) {
   const [loading, setLoading] = useState(false);
-  console.log(loading);
 
   return (
     <LoadingContext.Provider value={{ loading, setLoading }}>

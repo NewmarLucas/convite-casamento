@@ -27,9 +27,9 @@ export default function Invite() {
 
   const getUserData = useCallback(() => {
     const id = String(localStorage?.id);
+    setLoading(true);
     getUser(id)
       .then((res) => {
-        setLoading(true);
         if (res) {
           setUserData(res);
           setSelected([
@@ -90,7 +90,7 @@ export default function Invite() {
           <Image
             data-testid='bannerImage'
             src={noivos}
-            alt='noivos'
+            alt='noivos se beijando, os padrinhos ao redor dos noivos e fogos de artifício no céu'
             loading='lazy'
             className={styles.backgroundImage}
           />
@@ -104,7 +104,7 @@ export default function Invite() {
           <Image
             data-testid='flowersImage'
             src={flores}
-            alt='flores'
+            alt='ramo de flores'
             loading='lazy'
             className={styles.flowers}
           />
