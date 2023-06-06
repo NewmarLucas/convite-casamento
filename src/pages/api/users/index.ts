@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as z from 'zod';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
-import { db } from '../../../../firebase';
+import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { db, auth } from '../../../../firebase';
 
 type Data = {
   [x: string]: any;
@@ -24,17 +25,29 @@ export default async function handler(
   async function saveUser() {
     try {
       const fields = schema.parse(req.body);
+      const accountData = {
+        email: `${fields.name.replaceAll(' ', '_').toLowerCase()}@mail.com`,
+        password: fields.phone,
+      };
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        accountData.email,
+        accountData.password
+      );
+      const userId = userCredentials.user.uid;
       const payload = {
         ...fields,
+        email: accountData.email,
         confirmation: false,
         companions: fields.companions.map((item) => ({
           ...item,
           confirmation: false,
         })),
       };
-      await addDoc(collection(db, 'users'), payload);
+      await setDoc(doc(db, 'users', userId), payload);
       res.status(200).json({ success: true });
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error?.message);
       if (error instanceof z.ZodError) {
         res.status(400).json(error.formErrors.fieldErrors);
         return;
