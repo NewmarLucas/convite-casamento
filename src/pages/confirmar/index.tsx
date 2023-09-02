@@ -1,14 +1,15 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import { GetServerSidePropsContext } from 'next';
 import { Dancing_Script } from 'next/font/google';
 import Switch from 'react-switch';
+import nookies from 'nookies';
 
 import styles from './styles.module.css';
 import noivos from '@/assets/noivos-bg.jpg';
 import flores from '@/assets/flores.png';
 import HeadComponent from '@/components/Head';
 import { User, getUser, updateUser } from '@/services/users';
-import { LoadingContext } from '@/providers/loading';
 
 const font = Dancing_Script({
   weight: '400',
@@ -20,38 +21,24 @@ interface PeopleSelect {
   checked: boolean;
 }
 
-export default function Invite() {
-  const { setLoading } = useContext(LoadingContext);
-  const [userData, setUserData] = useState<User>({} as User);
-  const [selected, setSelected] = useState<PeopleSelect[]>([]);
+interface Props {
+  data: User;
+}
 
-  const getUserData = useCallback(() => {
-    const id = String(localStorage?.id);
-    setLoading(true);
-    getUser(id)
-      .then((res) => {
-        if (res) {
-          setUserData(res);
-          setSelected([
-            {
-              name: res.name,
-              checked: res.confirmation,
-            },
-            ...res.companions.map((item) => ({
-              name: item.name,
-              checked: item.confirmation,
-            })),
-          ]);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [setLoading]);
-
-  useEffect(() => {
-    getUserData();
-  }, [getUserData]);
+export default function Invite({ data }: Props) {
+  const defaultSelectedData = data
+    ? [
+        {
+          name: data?.name,
+          checked: data?.confirmation,
+        },
+        ...data?.companions?.map((item) => ({
+          name: item.name,
+          checked: item.confirmation,
+        })),
+      ]
+    : [];
+  const [selected, setSelected] = useState<PeopleSelect[]>(defaultSelectedData);
 
   function handleSelect(checked: boolean, index: number) {
     setSelected((prev) => {
@@ -66,8 +53,8 @@ export default function Invite() {
     const confirmations = [...selected];
     const mainUser = confirmations.shift();
     const payload: User = {
-      ...userData,
-      confirmation: mainUser?.checked ?? userData.confirmation,
+      ...data,
+      confirmation: mainUser?.checked ?? data?.confirmation,
       companions: confirmations.map((item) => ({
         name: item.name,
         confirmation: item.checked,
@@ -136,4 +123,30 @@ export default function Invite() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const cookies = nookies.get(context);
+  const id = cookies?.id;
+  if (!id) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+  const res = await getUser(id);
+  if (res) {
+    return {
+      props: { data: res },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
 }

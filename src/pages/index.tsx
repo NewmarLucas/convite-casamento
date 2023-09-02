@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Montserrat } from 'next/font/google';
+import nookies from 'nookies';
 
 import { ImSpoonKnife } from 'react-icons/im';
 import { RiPinDistanceLine } from 'react-icons/ri';
@@ -41,8 +42,9 @@ export default function Home() {
   const { id } = router.query;
 
   useEffect(() => {
+    nookies.destroy(null, 'id');
     if (id) {
-      localStorage.setItem('id', String(id));
+      nookies.set(null, 'id', String(id));
     }
   }, [id]);
 

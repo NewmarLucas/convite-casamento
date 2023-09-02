@@ -1,3 +1,5 @@
+import { api } from '@/middlewares/api';
+
 export interface User {
   id: string;
   name: string;
@@ -11,8 +13,7 @@ export interface User {
 
 export async function getUser(id: string) {
   try {
-    const response = await fetch(`/api/users/${id}`);
-    const data = await response.json();
+    const { data } = await api.get(`/users/${id}`);
     if (data?.success) {
       return data?.data as User;
     } else {
@@ -24,16 +25,8 @@ export async function getUser(id: string) {
 }
 
 export async function updateUser(id: string, payload: User) {
-  const headers = new Headers();
-  headers.set('Content-Type', 'application/json');
-
   try {
-    const response = await fetch(`/api/users/${id}`, {
-      method: 'PUT',
-      headers: headers,
-      body: JSON.stringify(payload),
-    });
-    const data = await response.json();
+    const { data } = await api.put(`/confirmate/${id}`, payload);
     if (data?.success) {
       return true;
     } else {
