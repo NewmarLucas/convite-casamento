@@ -10,7 +10,6 @@ import { TbCalendarTime } from 'react-icons/tb';
 
 import styles from '@/styles/Home.module.css';
 import HeadComponent from '@/components/Head';
-import { Header } from '@/components/Header';
 import { HomeCardInfo } from '@/components/HomeCardInfo';
 
 import weddingRing from '@/assets/weddingRing.svg';
@@ -51,7 +50,6 @@ export default function Home() {
   return (
     <div className={styles.container} data-testid='container'>
       <HeadComponent />
-      <Header />
       <div className={styles.mainImage}>
         <div className={styles.bannerTitle}>
           <h1 className={font.className}>
@@ -86,11 +84,13 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className={styles.mainButtonContainer}>
-          <Link href='/confirmar' className='filled-button'>
-            CONFIRMAR PRESENÇA
-          </Link>
-        </div>
+        {!!id && (
+          <div className={styles.mainButtonContainer}>
+            <Link href='/confirmar' className='filled-button'>
+              CONFIRMAR PRESENÇA
+            </Link>
+          </div>
+        )}
       </div>
       <Image
         priority
