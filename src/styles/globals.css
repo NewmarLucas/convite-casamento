@@ -55,3 +55,16 @@ a {
 .is-active-header {
   background-color: hsl(0deg 0% 21% / 1);
 }
+
+.swal2-modal {
+  font-family: Poppins, sans-serif;
+}
+
+.swal2-title {
+  font-weight: 600;
+  font-family: Poppins, sans-serif;
+}
+
+.swal2-confirm {
+  background-color: var(--main-color-dark) !important;
+}

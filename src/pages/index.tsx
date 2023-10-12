@@ -27,11 +27,11 @@ const infos = [
     icon: <TbCalendarTime size={35} color={'#BFDBF7'} />,
   },
   {
-    text: 'Simted - rua Arcenio Cardoso, 1234, Centro',
+    text: 'Simted - rua Arcenio Cardoso, 1121, Centro',
     icon: <RiPinDistanceLine size={35} color={'#BFDBF7'} />,
   },
   {
-    text: 'Não esqueça de levar pratos e talheres',
+    text: 'Não é necessário levar pratos e talheres',
     icon: <ImSpoonKnife size={35} color={'#BFDBF7'} />,
   },
 ];

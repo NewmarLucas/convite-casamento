@@ -4,6 +4,7 @@ import { GetServerSidePropsContext } from 'next';
 import { Dancing_Script } from 'next/font/google';
 import Switch from 'react-switch';
 import nookies from 'nookies';
+import Swal from 'sweetalert2';
 
 import styles from './styles.module.css';
 import noivos from '@/assets/noivos-bg.jpg';
@@ -62,9 +63,17 @@ export default function Invite({ data }: Props) {
     };
     const res = await updateUser(id, payload);
     if (res) {
-      alert('Sucesso!');
+      Swal.fire({
+        title: 'Sucesso',
+        text: 'Dados atualizados com sucesso!',
+        icon: 'success',
+      });
     } else {
-      alert('Erro');
+      Swal.fire({
+        title: 'Oops...',
+        text: 'Algo deu errado ao confirmar. Por favor, tente novamente!',
+        icon: 'error',
+      });
     }
   }
 
@@ -96,7 +105,7 @@ export default function Invite({ data }: Props) {
             className={styles.flowers}
           />
           <p className={styles.inviteText} data-testid='inviteText'>
-            Marque o nome das pessoas que vão no casamento
+            Por favor, selecione os convidados que estarão presentes e confirme:
           </p>
           <div className={styles.peopleForm} data-testid='peopleForm'>
             {selected.map((item, i) => (
