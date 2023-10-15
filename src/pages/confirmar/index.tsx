@@ -24,9 +24,10 @@ interface PeopleSelect {
 
 interface Props {
   data: User;
+  id: string;
 }
 
-export default function Invite({ data }: Props) {
+export default function Invite({ data, id }: Props) {
   const defaultSelectedData = data
     ? [
         {
@@ -50,7 +51,6 @@ export default function Invite({ data }: Props) {
   }
 
   async function submit() {
-    const id = String(localStorage?.id);
     const confirmations = [...selected];
     const mainUser = confirmations.shift();
     const payload: User = {
@@ -148,7 +148,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const res = await getUser(id);
   if (res) {
     return {
-      props: { data: res },
+      props: { data: res, id },
     };
   } else {
     return {
