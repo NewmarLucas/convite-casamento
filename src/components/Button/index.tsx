@@ -11,9 +11,9 @@ interface Props
 }
 
 export function Button(props: Props) {
-  const { loading = false, children } = props;
+  const { loading = false, children, ...rest } = props;
   return (
-    <button className={styles.button} {...props}>
+    <button className={styles.button} {...rest}>
       <span
         style={{
           display: 'flex',
@@ -22,7 +22,7 @@ export function Button(props: Props) {
           gap: 8,
         }}
       >
-        {loading && (
+        {!!loading && (
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='25'

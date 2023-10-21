@@ -71,6 +71,12 @@ export default function Invite() {
   useEffect(() => {
     if (!id) return;
 
+    Swal.fire({
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      title: 'Carregando...',
+    });
     getUser(id).then((res) => {
       if (res) {
         setData(res);
@@ -87,7 +93,9 @@ export default function Invite() {
       } else {
         router.push('/');
       }
+      Swal.close();
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -122,6 +130,7 @@ export default function Invite() {
             Por favor, selecione os convidados que estarão presentes e confirme:
           </p>
           <div className={styles.peopleForm} data-testid='peopleForm'>
+            {!selected.length && <p>Nenhum resultado encontrado</p>}
             {selected.map((item, i) => (
               <label key={item.name} className={styles.checkboxContainer}>
                 <Switch
