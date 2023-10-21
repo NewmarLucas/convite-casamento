@@ -6,6 +6,7 @@ import Switch from 'react-switch';
 import nookies from 'nookies';
 import Swal from 'sweetalert2';
 
+import { Button } from '@/components/Button';
 import styles from './styles.module.css';
 import noivos from '@/assets/noivos-bg.jpg';
 import flores from '@/assets/flores.png';
@@ -41,6 +42,7 @@ export default function Invite({ data, id }: Props) {
       ]
     : [];
   const [selected, setSelected] = useState<PeopleSelect[]>(defaultSelectedData);
+  const [loading, setLoading] = useState(false);
 
   function handleSelect(checked: boolean, index: number) {
     setSelected((prev) => {
@@ -61,6 +63,7 @@ export default function Invite({ data, id }: Props) {
         confirmation: item.checked,
       })),
     };
+    setLoading(true);
     const res = await updateUser(id, payload);
     if (res) {
       Swal.fire({
@@ -75,6 +78,7 @@ export default function Invite({ data, id }: Props) {
         icon: 'error',
       });
     }
+    setLoading(false);
   }
 
   return (
@@ -124,9 +128,14 @@ export default function Invite({ data, id }: Props) {
             ))}
           </div>
           <div className={styles.buttonContainer}>
-            <button data-testid='confirmationButton' onClick={submit}>
+            <Button
+              loading={loading}
+              disabled={loading}
+              data-testid='confirmationButton'
+              onClick={submit}
+            >
               Confirmar
-            </button>
+            </Button>
           </div>
         </div>
       </div>

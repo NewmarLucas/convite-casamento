@@ -1,0 +1,17 @@
+button.button {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 35px;
+  width: 100%;
+  max-width: 250px;
+  background-color: var(--main-color);
+  color: #fff;
+  text-transform: uppercase;
+  font: 500 18px Poppins, sans-serif;
+}
+
+button.button:disabled {
+  background-color: #ced2da;
+  color: #344051;
+  cursor: not-allowed;
+}

@@ -67,18 +67,6 @@
   justify-content: center;
 }
 
-.buttonContainer button {
-  border: none;
-  border-radius: 30px;
-  padding: 12px 35px;
-  width: 100%;
-  max-width: 250px;
-  background-color: var(--main-color);
-  color: #fff;
-  text-transform: uppercase;
-  font: 500 18px Poppins, sans-serif;
-}
-
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
