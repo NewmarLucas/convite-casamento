@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { GetServerSidePropsContext } from 'next';
 import { Dancing_Script } from 'next/font/google';
 import Switch from 'react-switch';
-import nookies from 'nookies';
+import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 
 import { Button } from '@/components/Button';
@@ -12,6 +11,7 @@ import noivos from '@/assets/noivos-bg.jpg';
 import flores from '@/assets/flores.png';
 import HeadComponent from '@/components/Head';
 import { User, getUser, updateUser } from '@/services/users';
+import { useRouter } from 'next/router';
 
 const font = Dancing_Script({
   weight: '400',
@@ -23,25 +23,11 @@ interface PeopleSelect {
   checked: boolean;
 }
 
-interface Props {
-  data: User;
-  id: string;
-}
-
-export default function Invite({ data, id }: Props) {
-  const defaultSelectedData = data
-    ? [
-        {
-          name: data?.name,
-          checked: data?.confirmation,
-        },
-        ...data?.companions?.map((item) => ({
-          name: item.name,
-          checked: item.confirmation,
-        })),
-      ]
-    : [];
-  const [selected, setSelected] = useState<PeopleSelect[]>(defaultSelectedData);
+export default function Invite() {
+  const router = useRouter();
+  const id = Cookies.get('id');
+  const [data, setData] = useState<User>({} as User);
+  const [selected, setSelected] = useState<PeopleSelect[]>([]);
   const [loading, setLoading] = useState(false);
 
   function handleSelect(checked: boolean, index: number) {
@@ -53,6 +39,7 @@ export default function Invite({ data, id }: Props) {
   }
 
   async function submit() {
+    if (!id) return;
     const confirmations = [...selected];
     const mainUser = confirmations.shift();
     const payload: User = {
@@ -80,6 +67,29 @@ export default function Invite({ data, id }: Props) {
     }
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (!id) return;
+
+    getUser(id).then((res) => {
+      if (res) {
+        setData(res);
+        setSelected([
+          {
+            name: res?.name,
+            checked: res?.confirmation,
+          },
+          ...res?.companions?.map((item) => ({
+            name: item.name,
+            checked: item.confirmation,
+          })),
+        ]);
+      } else {
+        router.push('/');
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <>
@@ -141,30 +151,4 @@ export default function Invite({ data, id }: Props) {
       </div>
     </>
   );
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const cookies = nookies.get(context);
-  const id = cookies?.id;
-  if (!id) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
-  const res = await getUser(id);
-  if (res) {
-    return {
-      props: { data: res, id },
-    };
-  } else {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
 }
