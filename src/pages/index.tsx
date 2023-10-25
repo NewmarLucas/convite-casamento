@@ -14,6 +14,7 @@ import { HomeCardInfo } from '@/components/HomeCardInfo';
 
 import weddingRing from '@/assets/weddingRing.svg';
 import footerPattern from '@/assets/footerPattern.png';
+import frontCover from '../../public/front-cover.webp';
 import { useRouter } from 'next/router';
 
 const font = Montserrat({
@@ -23,7 +24,7 @@ const font = Montserrat({
 
 const infos = [
   {
-    text: '25 de novembro de 2023 sábado às 18:30h',
+    text: '25 de novembro de 2023 sábado às 17:30h',
     icon: <TbCalendarTime size={35} color={'#BFDBF7'} />,
   },
   {
@@ -50,7 +51,16 @@ export default function Home() {
   return (
     <div className={styles.container} data-testid='container'>
       <HeadComponent />
-      <div className={styles.mainImage}>
+      <div className={styles.mainImageContainer}>
+        <div className={styles.mainImage}>
+          <Image
+            data-testid='frontCoverImage'
+            src={frontCover}
+            alt='foto de Newmar e Fernanda lendo a bíblia juntos enquanto estão sentados em um gramado'
+            // loading='lazy'
+            className={styles.frontCoverImage}
+          />
+        </div>
         <div className={styles.bannerTitle}>
           <h1 className={font.className}>
             <span>Casamento de</span>

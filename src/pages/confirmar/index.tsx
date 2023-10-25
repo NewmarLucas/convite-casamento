@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 import { Button } from '@/components/Button';
 import styles from './styles.module.css';
-import noivos from '@/assets/noivos-bg.jpg';
+import noivos from '@/assets/noivos-bg.webp';
 import flores from '@/assets/flores.png';
 import HeadComponent from '@/components/Head';
 import { User, getUser, updateUser } from '@/services/users';

@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   width: 100vw;
-  background: url('../assets/pattern.png') repeat;
+  background: url('../assets/pattern.webp') repeat;
 }
 
 .main {
@@ -10,7 +10,7 @@
   padding: 0;
   position: relative;
   height: 100%;
-  padding-top: 416px;
+  padding-top: 16px;
   z-index: 5;
   flex: 1;
   display: flex;
@@ -26,6 +26,7 @@
   width: 100%;
   max-width: var(--max-width);
   margin: 50px auto auto auto;
+  padding-bottom: 24px;
 }
 
 .content .texts {
@@ -58,31 +59,36 @@
   gap: 22px;
   width: 400px;
   padding: 0 20px;
+  z-index: 1;
+}
+
+.mainImageContainer {
+  position: relative;
+  width: 100%;
+  height: 400px;
 }
 
 .mainImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   width: 100%;
-  height: 400px;
-  background: url('../assets/front-cover.jpg') no-repeat;
-  background-size: cover;
-  background-position: left;
-  -webkit-box-shadow: inset 0px 90px 45px 0px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: inset 0px 90px 45px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0px 90px 45px 0px rgba(0, 0, 0, 0.5);
+  height: 100%;
+  z-index: 0;
 }
 
-.mainImage .bannerTitle {
+.frontCoverImage {
+  width: 100%;
+  height: 100%;
+  object-position: left;
+  object-fit: cover;
+}
+
+.mainImageContainer .bannerTitle {
   position: absolute;
   bottom: 25px;
   padding: 0 20px;
   width: 100%;
 }
 
-.mainImage .bannerTitle h1 {
+.mainImageContainer .bannerTitle h1 {
   text-shadow: -1px 1px 10px rgba(0, 0, 0, 0.75);
   text-transform: uppercase;
   color: #fff;
@@ -109,7 +115,7 @@
 }
 
 @media (max-width: 1125px) {
-  .mainImage .bannerTitle h1 {
+  .mainImageContainer .bannerTitle h1 {
     font-size: 4.5vw;
     letter-spacing: 10px;
   }
@@ -121,7 +127,7 @@
     flex-direction: column;
   }
 
-  .mainImage .bannerTitle h1 {
+  .mainImageContainer .bannerTitle h1 {
     font-size: 24px;
     letter-spacing: 4px;
   }
@@ -131,7 +137,7 @@
   }
 
   .mainButtonContainer {
-    padding: 30px 0;
+    padding: 15px 0 30px 0;
   }
 
   .cardInfoContainer {
@@ -141,12 +147,8 @@
 }
 
 @media (max-width: 480px) {
-  .mainImage {
+  .mainImageContainer {
     height: 275px;
-  }
-
-  .main {
-    padding-top: 300px;
   }
 
   .content .texts h1 {
@@ -156,21 +158,13 @@
 }
 
 @media (min-height: 1025px) {
-  .mainImage {
+  .mainImageContainer {
     height: 50vh;
-  }
-
-  .main {
-    padding-top: calc(50vh + 16px);
   }
 }
 
 @media (max-width: 480px) and (min-height: 900px) {
-  .mainImage {
+  .mainImageContainer {
     height: 40vh;
-  }
-
-  .main {
-    padding-top: calc(40vh + 16px);
   }
 }

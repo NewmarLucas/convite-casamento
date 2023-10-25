@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('../../assets/pattern.png') repeat, var(--background-color);
+  background: url('../../assets/pattern.webp') repeat, var(--background-color);
 }
 
 .peopleForm {
